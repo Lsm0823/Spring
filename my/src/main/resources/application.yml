@@ -1,0 +1,33 @@
+server:
+  port: 6060
+
+# JSP 경로 설정
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MYSQL;
+    # driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  sql:
+    init:
+      schema-locations: classpath:h2/schema.sql
+      data-locations: classpath:h2/data.sql
+      encoding: UTF-8
+      mode: always
+      
+#mybtis에서 복사 해온 것, mybatis 파일 생성없이 자동으로 연결
+mybatis:
+  mapper-locations: 
+    - classpath:mapper/*_mapper.xml
+
+# 컴포넌트 스캔전 모두 설정가능 , db에 들어가는 데이터중 -가 들어가는 것들 null 안뜨게 하기 위해 사용
+  configuration:
+    map-underscore-to-camel-case: true
